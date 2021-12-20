@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {TableColumn} from '../../../shared/model/table-column.class';
 import {FormSectionDeclaration} from '../../../shared/model/form-section-declaration.class';
 import {FormFieldDeclaration} from '../../../shared/model/form-field-declaration.class';
@@ -6,6 +6,8 @@ import {SharedFormInputComponent} from '../../../shared/components/shared-form-i
 import {DynamicComponent} from '../../../shared/model/dynamic-component.class';
 import {SharedTextClickComponent} from '../../../shared/components/shared-text-click/shared-text-click.component';
 import {KeyValuePair} from '../../../shared/model/key-value-pair.class';
+import {Actor} from '../../models/actor.interface';
+import {nameof} from 'ts-simple-nameof';
 
 @Component({
   selector: 'app-test-startpage',
@@ -13,7 +15,7 @@ import {KeyValuePair} from '../../../shared/model/key-value-pair.class';
 })
 export class TestStartpageComponent implements OnInit {
   public tableColumns: TableColumn[] = [];
-  public tableData: any[] = [];
+  public tableData: Actor[] = [];
 
   public formSections: FormSectionDeclaration[] = [];
 
@@ -32,15 +34,15 @@ export class TestStartpageComponent implements OnInit {
     this.tableColumns = [
       new TableColumn({
         title: 'Vorname',
-        nameInData: 'vorname',
+        nameInData: nameof<Actor>(c => c.vorname),
       }),
       new TableColumn({
         title: 'Nachname',
-        nameInData: 'nachname',
+        nameInData: nameof<Actor>(c => c.nachname),
       }),
       new TableColumn({
         title: 'Film',
-        nameInData: 'movie',
+        nameInData: nameof<Actor>(c => c.movie),
         dynamicComponent: new DynamicComponent<SharedTextClickComponent>({
           componentType: SharedTextClickComponent,
           outputs: {
@@ -48,8 +50,14 @@ export class TestStartpageComponent implements OnInit {
           }
         }),
         dynamicComponentRowInputValues: [
-          new KeyValuePair('text', 'movie'),
-          new KeyValuePair('emitValue', 'movie'),
+          new KeyValuePair(
+            nameof<SharedTextClickComponent>(c => c.text),
+            nameof<Actor>(c => c.movie)
+          ),
+          new KeyValuePair(
+            nameof<SharedTextClickComponent>(c => c.emitValue),
+            nameof<Actor>(c => c.movie)
+          ),
         ]
       }),
     ];
