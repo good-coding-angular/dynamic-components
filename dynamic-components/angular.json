@@ -31,6 +31,8 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/font-awesome/css/font-awesome.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -99,9 +101,41 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "sso-dynamic": {
+      "projectType": "library",
+      "root": "projects/sso-dynamic",
+      "sourceRoot": "projects/sso-dynamic/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/sso-dynamic/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/sso-dynamic/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/sso-dynamic/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sso-dynamic/src/test.ts",
+            "tsConfig": "projects/sso-dynamic/tsconfig.spec.json",
+            "karmaConfig": "projects/sso-dynamic/karma.conf.js"
           }
         }
       }
