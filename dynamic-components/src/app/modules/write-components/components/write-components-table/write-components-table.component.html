@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th *ngFor="let column of tableColumns">
+      {{column.title}}
+    </th>
+  </tr>
+  <tr *ngFor="let row of tableData">
+    <td *ngFor="let column of tableColumns">
+      <div *ngIf="!column.dynamicComponent">
+        {{objectService.getAttributeFromObject(row, column.nameInData ?? '', 'ifEmptyContent')}}
+      </div>
+      <div *ngIf="!!column.dynamicComponent">
+        <sso-dynamic
+          [dynamicComponent]="getDynamicComponent(column, row)"
+        ></sso-dynamic>
+      </div>
+    </td>
+  </tr>
+</table>

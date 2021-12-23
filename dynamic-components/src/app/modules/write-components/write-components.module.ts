@@ -7,11 +7,13 @@ import {SharedModule} from '../shared/shared.module';
 import {WriteComponentsRoutingModule} from './write-components-routing.module';
 import {WriteComponentsDropdownComponent} from './components/write-components-dropdown/write-components-dropdown.component';
 import {SsoDynamicModule} from '../../../../projects/sso-dynamic/src/lib/sso-dynamic.module';
+import {WriteComponentsTableComponent} from './components/write-components-table/write-components-table.component';
 
 @NgModule({
   declarations: [
     WriteComponentsStartpageComponent,
     WriteComponentsDropdownComponent,
+    WriteComponentsTableComponent,
   ],
   imports: [
     CommonModule,
