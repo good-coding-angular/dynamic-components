@@ -13,7 +13,7 @@ import {IconBootstrapTypeEnum} from '../../model/icon-bootstrap-type.enum';
 })
 export class SharedIconComponent {
   @Input()
-  public icon: any = SolidIcons.faHome;
+  public icon: any = SolidIcons.faPlus;
 
   @Input()
   public iconType: IconTypeEnum = IconTypeEnum.FONT_AWESOME;

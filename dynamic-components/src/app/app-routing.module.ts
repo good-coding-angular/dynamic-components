@@ -45,6 +45,12 @@ const routes: Routes = [
     ),
   },
   {
+    path: 'write-components',
+    loadChildren: () => import('./modules/write-components/write-components.module').then(
+      (m) => m.WriteComponentsModule
+    ),
+  },
+  {
     path: '**',
     component: Core404Component,
   },

@@ -1,0 +1,13 @@
+.write-components-dropdown {
+  &__main {
+    position: relative;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 300px;
+    border: 1px solid black;
+  }
+}

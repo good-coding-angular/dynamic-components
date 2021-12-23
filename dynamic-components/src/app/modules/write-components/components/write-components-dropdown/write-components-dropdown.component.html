@@ -1,0 +1,17 @@
+<div class="write-components-dropdown__main">
+  <div (click)="toggleDropdown()">Open/Close</div>
+  <div
+    *ngIf="showDropDown"
+    class="write-components-dropdown__dropdown"
+  >
+    Dynamic Content
+
+    <ng-template ngFor let-dynamicComponent [ngForOf]="dynamicComponents">
+      <div>
+        <sso-dynamic
+          [dynamicComponent]="dynamicComponent"
+        ></sso-dynamic>
+      </div>
+    </ng-template>
+  </div>
+</div>

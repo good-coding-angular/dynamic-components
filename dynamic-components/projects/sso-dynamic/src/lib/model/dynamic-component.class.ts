@@ -3,8 +3,8 @@ import {Type} from '@angular/core';
 export class DynamicComponent {
   public moduleType?: Type<any>;
   public componentType?: Type<any>;
-  public inputs: any = {};
-  public outputs: any = {};
+  public inputs?: any = {};
+  public outputs?: any = {};
 
   public constructor(config?: {
     moduleType?: Type<any>,
