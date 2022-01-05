@@ -1,108 +1,132 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
-import {SimpleTableColumn} from '../../model/simple-table-column.class';
+import {FormFieldsetDeclaration} from '../../model/form-fieldset-declaration.class';
+import {FormFormfieldDeclaration} from '../../model/form-formfield.declaration';
+import {WriteComponentsFormInputComponent} from '../../components/write-components-form-input/write-components-form-input.component';
 import {DynamicComponent} from '../../../shared/model/dynamic-component.class';
-import {SharedTextClickComponent} from '../../../shared/components/shared-text-click/shared-text-click.component';
-import {KeyValuePair} from '../../../shared/model/key-value-pair.class';
+import {SharedBaseComponent} from '../../../shared/components/shared-base/shared-base.component';
 
 @Component({
   selector: 'app-write-components-startpage',
   templateUrl: './write-components-startpage.component.html',
 })
-export class WriteComponentsStartpageComponent implements OnInit {
-  public tableColumns: SimpleTableColumn[] = [];
-  public tableData: any[] = [];
-  public clickedText: EventEmitter<any> = new EventEmitter<any>();
+export class WriteComponentsStartpageComponent extends SharedBaseComponent implements OnInit {
+  public formFieldsetDeclaration: FormFieldsetDeclaration[] = [];
+
+  public valueHasChanged: EventEmitter<[string, string]> = new EventEmitter<[string, string]>();
+
+  public data: any;
 
   public ngOnInit(): void {
-    this.initTableColumns();
-    this.initTableData();
-
-    this.initClickedTextEmitter();
+    this.initFormFieldsetDeclaration();
   }
 
-  public initClickedTextEmitter(): void {
-    this.clickedText.subscribe(
-      data => {
-        console.log('data', data);
-      }
-    );
+  public formValueHasChanged(data: any) {
+    console.log('formdata', data);
+    this.data = data;
   }
 
-  public initTableColumns(): void {
-    this.tableColumns = [
-      new SimpleTableColumn({
-        title: 'Firstname',
-        nameInData: 'firstname',
-        dynamicComponent: new DynamicComponent<SharedTextClickComponent>({
-          componentType: SharedTextClickComponent,
-          inputs: {
-            emitValue: 'movie2'
-          },
-          outputs: {
-            clickedText: this.clickedText
-          }
-        }),
-        dynamicComponentRowInputValues: [
-          new KeyValuePair('text', 'movie')
+  public submitForm() {
+    console.log('submitForm', this.data);
+  }
+
+  public initFormFieldsetDeclaration(): void {
+    this.formFieldsetDeclaration = [
+      new FormFieldsetDeclaration({
+        title: 'Personalia',
+        formFieldDeclarations: [
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'First name',
+                name: 'firstname',
+                disabled: true,
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'Last name',
+                name: 'lastname',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'Email',
+                name: 'email',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'Birthday',
+                name: 'birthday',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
         ]
       }),
-      new SimpleTableColumn({
-        title: 'Lastname',
-        nameInData: 'lastname',
-      }),
-      new SimpleTableColumn({
-        title: 'Movie',
-        nameInData: 'movie',
-      }),
-      new SimpleTableColumn({
-        title: 'Movie',
-        nameInData: 'a.b',
-      }),
-    ];
-  }
-
-  public initTableData(): void {
-    this.tableData = [
-      {
-        firstname: 'Chuck',
-        lastname: 'Norris',
-        movie: 'The Expandables',
-        a: {
-          b: 'adsf'
-        }
-      },
-      {
-        firstname: 'Bruce',
-        lastname: 'Willis',
-        movie: 'Die hard',
-        a: {
-          b: 'adsf'
-        }
-      },
-      {
-        firstname: 'Angelina',
-        lastname: 'Jolie',
-        movie: 'Lara Croft',
-        a: {
-          b: 'adsf'
-        }
-      },
-      {
-        firstname: 'Arnold',
-        lastname: 'Schwarzenegger',
-        movie: 'Terminator',
-        a: {
-          b: 'adsf'
-        }
-      },
-      {
-        firstname: 'Scarlet',
-        lastname: 'Johansson',
-        movie: 'Avengers',
-        a: {
-          b: 'adsf'
-        }
-      }
+      new FormFieldsetDeclaration({
+        title: 'Address',
+        active: true,
+        formFieldDeclarations: [
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'Street',
+                name: 'street',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'House Number',
+                name: 'housenr',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+          new FormFormfieldDeclaration({
+            formComponent: new DynamicComponent<WriteComponentsFormInputComponent>({
+              componentType: WriteComponentsFormInputComponent,
+              inputs: {
+                label: 'House Number',
+                name: 'housenr',
+              },
+              outputs: {
+                valueHasChanged: this.valueHasChanged
+              }
+            })
+          }),
+        ]
+      })
     ];
   }
 }

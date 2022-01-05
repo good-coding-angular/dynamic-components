@@ -1,0 +1,17 @@
+<div class="write-components-form-input__main mb-2">
+  <label
+    [for]="name"
+    class="write-components-form-input__label"
+  >
+    {{label}}:
+  </label>
+  <input
+    class="write-components-form-input__input"
+    type="text"
+    [id]="name"
+    [name]="name"
+    [disabled]="disabled"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChanged()"
+  >
+</div>

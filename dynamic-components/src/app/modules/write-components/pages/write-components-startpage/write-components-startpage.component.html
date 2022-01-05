@@ -1,4 +1,6 @@
-<app-write-components-table
-  [tableColumns]="tableColumns"
-  [tableData]="tableData"
-></app-write-components-table>
+<app-write-components-form
+  [formFieldsetDeclarations]="formFieldsetDeclaration"
+  [valueHasChangedEmitters]="[valueHasChanged]"
+  (valueHasChanged)="formValueHasChanged($event)"
+  (submitForm)="submitForm()"
+></app-write-components-form>

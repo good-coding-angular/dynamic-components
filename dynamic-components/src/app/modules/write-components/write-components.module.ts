@@ -8,12 +8,16 @@ import {WriteComponentsRoutingModule} from './write-components-routing.module';
 import {WriteComponentsDropdownComponent} from './components/write-components-dropdown/write-components-dropdown.component';
 import {SsoDynamicModule} from '../../../../projects/sso-dynamic/src/lib/sso-dynamic.module';
 import {WriteComponentsTableComponent} from './components/write-components-table/write-components-table.component';
+import {WriteComponentsFormComponent} from './components/write-components-form/write-components-form.component';
+import {WriteComponentsFormInputComponent} from './components/write-components-form-input/write-components-form-input.component';
 
 @NgModule({
   declarations: [
     WriteComponentsStartpageComponent,
     WriteComponentsDropdownComponent,
     WriteComponentsTableComponent,
+    WriteComponentsFormComponent,
+    WriteComponentsFormInputComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,15 @@
-import {DynamicComponent} from './dynamic-component.class';
+import {DynamicComponent} from '../../shared/model/dynamic-component.class';
 
-export class FormFieldDeclaration {
-  public bootstrapWidth?: number;
+export class FormFormfieldDeclaration {
+  public bootstrapWidth: number = 12;
   public bootstrapXlWidth?: number;
   public bootstrapLgWidth?: number;
   public bootstrapMdWidth?: number;
   public bootstrapXsWidth?: number;
   public bootstrapSmWidth?: number;
+
+  public active: boolean = true;
+
   public formComponent: DynamicComponent<any> = new DynamicComponent<any>();
 
   constructor(
@@ -17,6 +20,7 @@ export class FormFieldDeclaration {
       bootstrapMdWidth?: number;
       bootstrapXsWidth?: number;
       bootstrapSmWidth?: number;
+      active?: boolean;
       formComponent: DynamicComponent<any>;
     }
   ) {

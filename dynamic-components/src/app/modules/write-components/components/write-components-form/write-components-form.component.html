@@ -1,0 +1,22 @@
+<form>
+  <ng-template ngFor let-formFieldset [ngForOf]="formFieldsetDeclarations">
+    <fieldset
+      *ngIf="formFieldset.active"
+      [ngClass]="getFieldsetClass()"
+    >
+      <legend *ngIf="!!formFieldset.title">{{formFieldset.title}}:</legend>
+      <ng-template ngFor let-formField [ngForOf]="formFieldset.formFieldDeclarations">
+        <sso-dynamic [dynamicComponent]="formField.formComponent"></sso-dynamic>
+      </ng-template>
+    </fieldset>
+  </ng-template>
+
+  <button
+    *ngIf="hasSubmitButton"
+    type="submit"
+    class="btn btn-primary"
+    (click)="formWasSubmitted()"
+  >
+    {{submitButtonText}}
+  </button>
+</form>

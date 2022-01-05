@@ -1,13 +1,19 @@
-import {DynamicComponent} from './dynamic-component.class';
+import {FormFieldDeclaration} from '../../shared/model/form-field-declaration.class';
+import {FormFormfieldDeclaration} from './form-formfield.declaration';
 
-export class FormFieldDeclaration {
-  public bootstrapWidth?: number;
+export class FormFieldsetDeclaration {
+  public bootstrapWidth: number = 12;
   public bootstrapXlWidth?: number;
   public bootstrapLgWidth?: number;
   public bootstrapMdWidth?: number;
   public bootstrapXsWidth?: number;
   public bootstrapSmWidth?: number;
-  public formComponent: DynamicComponent<any> = new DynamicComponent<any>();
+
+  public active: boolean = true;
+
+  public title?: string;
+
+  public formFieldDeclarations: FormFieldDeclaration[] = [];
 
   constructor(
     options?: {
@@ -17,7 +23,9 @@ export class FormFieldDeclaration {
       bootstrapMdWidth?: number;
       bootstrapXsWidth?: number;
       bootstrapSmWidth?: number;
-      formComponent: DynamicComponent<any>;
+      active?: boolean;
+      title?: string;
+      formFieldDeclarations?: FormFormfieldDeclaration[];
     }
   ) {
     if (!!options) {
