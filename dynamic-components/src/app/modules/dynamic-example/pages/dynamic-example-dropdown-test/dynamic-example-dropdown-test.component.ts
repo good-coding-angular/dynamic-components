@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicComponent} from '../../../../../../projects/sso-dynamic/src/lib/model/dynamic-component.class';
 import {DynamicExampleInsertedComponent} from '../../components/dynamic-example-inserted/dynamic-example-inserted.component';
+import {ModuleoneLoadedComponent} from '../../../moduleone/components/moduleone-loaded/moduleone-loaded.component';
+import {ModuletwoStartpageComponent} from '../../../moduletwo/pages/moduletwo-startpage/moduletwo-startpage.component';
+import {ModuletwoModule} from '../../../moduletwo/moduletwo.module';
 
 @Component({
   selector: 'sso-dynamic-example-dropdown-test',
@@ -19,6 +22,19 @@ export class DynamicExampleDropdownTestComponent implements OnInit {
       }),
       new DynamicComponent({
         componentType: DynamicExampleInsertedComponent,
+        inputs: {
+          text: 'Entry 2',
+        },
+      }),
+      new DynamicComponent({
+        componentType: ModuleoneLoadedComponent,
+        inputs: {
+          text: 'Entry 2',
+        },
+      }),
+      new DynamicComponent({
+        componentType: ModuletwoStartpageComponent,
+        moduleType: ModuletwoModule,
         inputs: {
           text: 'Entry 2',
         },
